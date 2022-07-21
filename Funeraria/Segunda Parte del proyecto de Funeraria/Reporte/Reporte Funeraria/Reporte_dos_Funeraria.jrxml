@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte_dos_Funeraria" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a2cf9cbb-a61b-479b-9755-bbfe69864e27">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ReporteServicios"/>
+	<subDataset name="ServiciosFuneraria" uuid="d18b7469-06d5-4397-a198-b73b4c0fabc8">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ReporteServicios"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<queryString language="plsql">
+			<![CDATA[SELECT 
+serviciofuneraria_descripcion,
+COUNT (fallecido.fallecido_nombre) Cantidad_Fallecidos, 
+SUM (serviciosfuneraria.serviciofuneraria_precio) AS Ganancias_de_Servicios
+FROM 
+public.servicio_fallecido INNER JOIN fallecido  ON fallecido.fallecido_id = servicio_fallecido.fallecido_id
+INNER JOIN serviciosfuneraria ON serviciosfuneraria.serviciofuneraria_id=servicio_fallecido.serviciofuneraria_id
+
+GROUP BY  serviciofuneraria_descripcion;
+]]>
+		</queryString>
+		<field name="serviciofuneraria_descripcion" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="serviciofuneraria_descripcion"/>
+			<property name="com.jaspersoft.studio.field.label" value="serviciofuneraria_descripcion"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="serviciosfuneraria"/>
+		</field>
+		<field name="cantidad_fallecidos" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="cantidad_fallecidos"/>
+			<property name="com.jaspersoft.studio.field.label" value="cantidad_fallecidos"/>
+		</field>
+		<field name="ganancias_de_servicios" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="ganancias_de_servicios"/>
+			<property name="com.jaspersoft.studio.field.label" value="ganancias_de_servicios"/>
+		</field>
+	</subDataset>
+	<queryString language="plsql">
+		<![CDATA[SELECT 
+serviciofuneraria_descripcion,
+COUNT (fallecido.fallecido_nombre) Cantidad_Fallecidos, 
+SUM (serviciosfuneraria.serviciofuneraria_precio) AS Ganancias_de_Servicios
+FROM 
+public.servicio_fallecido INNER JOIN fallecido  ON fallecido.fallecido_id = servicio_fallecido.fallecido_id
+INNER JOIN serviciosfuneraria ON serviciosfuneraria.serviciofuneraria_id=servicio_fallecido.serviciofuneraria_id
+
+GROUP BY  serviciofuneraria_descripcion;
+]]>
+	</queryString>
+	<field name="serviciofuneraria_descripcion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="serviciofuneraria_descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="serviciofuneraria_descripcion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="serviciosfuneraria"/>
+	</field>
+	<field name="cantidad_fallecidos" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="cantidad_fallecidos"/>
+		<property name="com.jaspersoft.studio.field.label" value="cantidad_fallecidos"/>
+	</field>
+	<field name="ganancias_de_servicios" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="ganancias_de_servicios"/>
+		<property name="com.jaspersoft.studio.field.label" value="ganancias_de_servicios"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="90" y="10" width="412" height="39" uuid="39c779b7-5598-48eb-90f3-5dca6ed84576"/>
+				<textElement textAlignment="Center">
+					<font fontName="Bodoni MT" size="27" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Funeraria Eternidad]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="437" height="45" forecolor="#CF6D6B" uuid="f1147f37-0be3-48dd-a853-b555bcea638d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Serif" size="21" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de cantidad de fallecidos por sala.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="200" height="30" uuid="b3dc6f86-0ff1-4769-815b-460656a27266">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="df297014-f646-45aa-bf3f-b8f8ff4d197a"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.5" lineColor="#DE8B8A"/>
+				</box>
+				<textElement>
+					<font fontName="Serif" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripcion de Servicios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="180" height="30" uuid="be39ec30-9e28-4705-8b21-6e1333c9ab23">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="187d8a1d-4297-453a-892f-1259e6520fdc"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.5" lineColor="#DE8B8A"/>
+				</box>
+				<textElement>
+					<font fontName="Serif" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad de Fallecidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="0" width="180" height="30" uuid="73e12ce7-527a-41a3-af48-f0d8e8099089">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7baad599-a14b-411e-88a9-2eb801570e7d"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.5" lineColor="#DE8B8A"/>
+				</box>
+				<textElement>
+					<font fontName="Serif" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ganancias Servicios]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="200" height="30" uuid="8158de19-b5bd-4e88-b94c-33d77d7ae21f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="df297014-f646-45aa-bf3f-b8f8ff4d197a"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.5" lineColor="#DE8B8A"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{serviciofuneraria_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="180" height="30" uuid="daaa21cd-90ef-4a94-a852-b5c8748ef68f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="187d8a1d-4297-453a-892f-1259e6520fdc"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.5" lineColor="#DE8B8A"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad_fallecidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="382" y="0" width="179" height="30" uuid="4523e6f1-164d-4a40-9e9c-10edca7416a6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7baad599-a14b-411e-88a9-2eb801570e7d"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.5" lineColor="#DE8B8A"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ganancias_de_servicios}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="223" splitType="Stretch">
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="11" y="23" width="551" height="200" uuid="6baf9cde-d008-4d9f-af54-690d454ab92a"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset resetType="Report">
+						<datasetRun subDataset="ServiciosFuneraria" uuid="9f0b39d9-25c6-4aad-b735-deb4f7d156c8">
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{serviciofuneraria_descripcion}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{ganancias_de_servicios}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{cantidad_fallecidos}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>
